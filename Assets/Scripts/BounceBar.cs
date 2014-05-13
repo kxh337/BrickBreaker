@@ -28,4 +28,25 @@ public class BounceBar : MonoBehaviour {
 		}
 	
 	}
+
+	void OnCollisionEnter(Collision other) {
+		if (other.gameObject.tag.Equals("Ball")){
+//			float x = other.gameObject.rigidbody.velocity.x;
+//			float y = other.gameObject.rigidbody.velocity.y;
+			float mag = BallScript.ballSpeed;
+			float diff = other.transform.position.x - this.transform.position.x;
+			if (diff >= 1)
+				diff = .99f;
+			else if (diff <= -1)
+				diff = -.99f;
+			int sign;
+			if (diff > 0)
+				sign = 1;
+			else
+				sign = -1;
+			float x = mag * diff;
+			float y = mag * Mathf.Sin(Mathf.Acos(diff * sign));
+			other.gameObject.GetComponent<BallScript>().setVelNums(x, y);
+		}
+	}
 }
