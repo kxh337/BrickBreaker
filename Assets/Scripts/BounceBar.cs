@@ -7,6 +7,8 @@ public class BounceBar : MonoBehaviour {
 	public GameObject ball;
 	public Vector3 offset;
 	public Vector3 force;
+	public float minBar;
+	public float maxBar;
 	// Use this for initialization
 	void Start () {
 		started = false;
@@ -15,6 +17,12 @@ public class BounceBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.Translate(Vector3.right*Input.GetAxis("Horizontal")*speed*Time.deltaTime,Camera.main.transform);
+		if(transform.position.x <= minBar){
+			transform.position = new Vector3 (minBar, -8,0);
+		}
+		if(transform.position.x>=maxBar){
+			transform.position = new Vector3 (maxBar, -8,0);
+		}
 		if(started == false){
 			if(!ball.activeSelf){
 				ball.SetActive(true);
