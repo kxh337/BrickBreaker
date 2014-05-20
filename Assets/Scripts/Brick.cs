@@ -23,7 +23,7 @@ public class Brick : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (GameManager.broken == nextFall) {
-			startingY = startingY - 2.0f;
+			startingY = startingY - 1.0f;
 			nextFall = nextFall + step;
 		}
 		if (startingY < transform.position.y)
