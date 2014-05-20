@@ -9,9 +9,13 @@ public class BounceBar : MonoBehaviour {
 	public Vector3 force;
 	public float minBar;
 	public float maxBar;
+	public GameObject Lasers;
+	private float laserStart;
+	private float laserEnd;
 	// Use this for initialization
 	void Start () {
 		started = false;
+		Lasers.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -34,7 +38,9 @@ public class BounceBar : MonoBehaviour {
 				started = true;
 			}
 		}
-	
+		if(Time.time > laserEnd){
+			Lasers.SetActive(false);
+		}
 	}
 
 	void OnCollisionEnter(Collision other) {
@@ -56,5 +62,11 @@ public class BounceBar : MonoBehaviour {
 			float y = mag * Mathf.Sin(Mathf.Acos(diff * sign));
 			other.gameObject.GetComponent<BallScript>().setVelNums(x, y);
 		}
+	}
+
+	public void LaserOn(float time){
+		laserStart = Time.time;
+		laserEnd = Time.time + time;
+		Lasers.SetActive(true);
 	}
 }

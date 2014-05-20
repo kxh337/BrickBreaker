@@ -27,16 +27,17 @@ public class Brick : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision collision){
 		if(collision.gameObject.tag == "Ball"){
-			if (strength <= 0){
-				Destroy(gameObject);
-				DropItem();
-			}
-			else {
-				strength--;	
-				gameObject.renderer.material = bricks [strength];		
-				}
-
-		
+			dealDamage();
+		}
+	}
+	public void dealDamage(){
+		if (strength <= 0){
+			Destroy(gameObject);
+			DropItem();
+		}
+		else {
+			strength--;	
+			gameObject.renderer.material = bricks [strength];		
 		}
 	}
 	

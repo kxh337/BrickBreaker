@@ -12,7 +12,7 @@ public class Item : MonoBehaviour {
 	void Update () {
 		transform.Translate(Vector3.down*speed*Time.deltaTime);
 	}
-	void getItem(GameObject paddle){
+	public virtual void getItem(GameObject paddle){
 	}
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.tag == "paddle"){
