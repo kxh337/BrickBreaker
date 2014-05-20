@@ -4,7 +4,7 @@ using System.Collections;
 public class Brick : MonoBehaviour {
 	
 	public Material[] bricks;
-
+	public float fallSpeed;
 	public int strength;
 
 	public GameObject[] items;
@@ -17,7 +17,11 @@ public class Brick : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (transform.position.y > - 11)
+			transform.position = new Vector3 (transform.position.x, transform.position.y - fallSpeed, transform.position.z);
+		else
+			transform.position = new Vector3 (transform.position.x, 13f, transform.position.z);
+	 
 	}
 	void DropItem(){
 		if(Random.Range(0,100)<itemChance){
