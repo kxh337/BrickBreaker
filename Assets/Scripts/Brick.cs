@@ -7,15 +7,16 @@ public class Brick : MonoBehaviour {
 	public float fallSpeed;
 	public int strength;
 	public float startingY;
-	public int step;
+	public int step = 5;
 	public int nextFall;
 
 	public GameObject[] items;
 	public float itemChance;
+
 	// Use this for initialization
 	void Start () {
 		startingY = transform.position.y;
-		nextFall = step;
+		setNextFall(step);
 		strength = (Random.Range(0, bricks.Length));
 		gameObject.renderer.material = bricks [strength];
 	}
@@ -43,6 +44,7 @@ public class Brick : MonoBehaviour {
 			dealDamage();
 		}
 	}
+
 	public void dealDamage(){
 		if (strength <= 0){
 			GameManager.broken++;
@@ -54,5 +56,9 @@ public class Brick : MonoBehaviour {
 			gameObject.renderer.material = bricks [strength];		
 		}
 	}
-	
+
+	public void setNextFall(int next){
+		nextFall = next;
+	} 
+
 }
