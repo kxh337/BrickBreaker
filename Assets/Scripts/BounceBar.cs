@@ -4,18 +4,23 @@ using System.Collections;
 public class BounceBar : MonoBehaviour {
 	public static bool started;
 	public float speed;
-	public GameObject ball;
+	public GameObject ballPrefab;
 	public Vector3 offset;
 	public Vector3 force;
 	public float minBar;
 	public float maxBar;
 	public GameObject Lasers;
+	public static int ballCount;
 	private float laserStart;
 	private float laserEnd;
+	private bool ballInstantiated;
+	private GameObject ball;
 	// Use this for initialization
 	void Start () {
 		started = false;
 		Lasers.SetActive(false);
+		ballInstantiated = false;
+		ballCount =0;
 	}
 	
 	// Update is called once per frame
@@ -27,15 +32,19 @@ public class BounceBar : MonoBehaviour {
 		if(transform.position.x>=maxBar){
 			transform.position = new Vector3 (maxBar, -8,0);
 		}
-		if(started == false){
-			if(!ball.activeSelf){
-				ball.SetActive(true);
+
+		if( ballCount ==0){
+			if(!ballInstantiated){
+				ball = (GameObject)Instantiate(ballPrefab,transform.position +offset,transform.rotation);
+				ballInstantiated = true;
 			}
 				ball.transform.position = transform.position + offset;
 				ball.rigidbody.velocity = Vector3.zero;
-			if(Input.GetMouseButtonDown(0)&&ball){
+			if(Input.GetMouseButtonDown(0)){
 				ball.rigidbody.AddForce(force);
-				started = true;
+
+				ballInstantiated = false;
+				ballCount++;
 			}
 		}
 		if(Time.time > laserEnd){

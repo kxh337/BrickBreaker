@@ -11,6 +11,9 @@ public class Item : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.Translate(Vector3.down*speed*Time.deltaTime);
+		if(transform.position.y < -16){
+			Destroy(gameObject);
+		}
 	}
 	public virtual void getItem(GameObject paddle){
 	}

@@ -14,7 +14,8 @@ public class BottomBar : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision collision){
 		if(collision.gameObject.tag == "Ball"){
-			BounceBar.started = false;
+			Destroy(collision.gameObject);
+			BounceBar.ballCount--;
 		}
 		
 	}
