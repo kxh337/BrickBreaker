@@ -35,7 +35,7 @@ public class Brick : MonoBehaviour {
 	}
 	void DropItem(){
 		if(Random.Range(0,100)<itemChance){
-		int item = (int)Random.Range(0,items.Length-1);
+		int item = (int)Random.Range(0,items.Length);
 		Instantiate(items[item],transform.position,transform.rotation);
 		}
 	}

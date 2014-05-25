@@ -8,10 +8,6 @@ public class LaserItem : Item {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public override void getItem(GameObject paddle){
 		BounceBar barScript = paddle.GetComponent<BounceBar>();
