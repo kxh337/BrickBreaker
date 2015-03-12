@@ -54,22 +54,32 @@ public class BounceBar : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other) {
 		if (other.gameObject.tag.Equals("Ball")){
-//			float x = other.gameObject.rigidbody.velocity.x;
-//			float y = other.gameObject.rigidbody.velocity.y;
 			float mag = BallScript.ballSpeed;
-			float diff = other.transform.position.x - this.transform.position.x;
-			if (diff >= 1)
-				diff = .99f;
-			else if (diff <= -1)
-				diff = -.99f;
+			float diffX = other.transform.position.x - this.transform.position.x;
+			if (diffX >= 1){
+				diffX = .99f;
+			}
+			else if (diffX <= -1){
+				diffX = -.99f;
+			}
 			int sign;
-			if (diff > 0)
+			if (diffX > 0){
 				sign = 1;
-			else
+			}
+			else{
 				sign = -1;
-			float x = mag * diff;
-			float y = mag * Mathf.Sin(Mathf.Acos(diff * sign));
-			other.gameObject.GetComponent<BallScript>().setVelNums(x, y);
+			}
+			float x = mag * diffX;
+			float diffY = other.transform.position.y - this.transform.position.y;
+			//quick fix for balls going upward even underneath the bouncebar
+			if(diffY < 0){
+				other.gameObject.GetComponent<BallScript>().setVelNums(x);
+			}
+			else{
+				float y = mag * Mathf.Sin(Mathf.Acos(diffX * sign));
+				other.gameObject.GetComponent<BallScript>().setVelNums(x, y);
+			}
+
 		}
 	}
 
