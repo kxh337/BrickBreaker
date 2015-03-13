@@ -25,7 +25,7 @@ public class BounceBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector3.right*Input.GetAxis("Horizontal")*speed*Time.deltaTime,Camera.main.transform);
+		transform.Translate(Vector3.right*Input.acceleration.x*speed*Time.deltaTime,Camera.main.transform);
 		if(transform.position.x <= minBar){
 			transform.position = new Vector3 (minBar, -8,0);
 		}
