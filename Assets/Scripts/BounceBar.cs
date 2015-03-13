@@ -85,7 +85,7 @@ public class BounceBar : MonoBehaviour {
 
 	public void LaserOn(float time){
 		laserStart = Time.time;
-		laserEnd = Time.time + time;
+		laserEnd = laserStart + time;
 		Lasers.SetActive(true);
 	}
 }

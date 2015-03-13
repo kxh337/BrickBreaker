@@ -3,7 +3,7 @@ using System.Collections;
 
 //class that only looks at input of one finger which will always be the first finger on the screen
 public class TouchInput : MonoBehaviour {
-	private Transform touchTrans;
+	private Vector3 touchPosition;
 	private int touchCount;
 	private TouchPhase phase;
 	private RaycastHit hit;
@@ -20,8 +20,8 @@ public class TouchInput : MonoBehaviour {
 		return this.phase;
 	}
 
-	public Transform getTouchTrans(){
-		return this.touchTrans;
+	public Vector3 getTouchTrans(){
+		return this.touchPosition;
 	}
 	// Use this for initialization
 	void Start () {
@@ -34,10 +34,10 @@ public class TouchInput : MonoBehaviour {
 		//get input
 		if(Input.touchCount > 0){
 			touchCount = Input.touchCount;
-			touchTrans.position = Input.GetTouch(0).position;
+			touchPosition = Input.GetTouch(0).position;
 			phase = Input.GetTouch(0).phase;
 			RaycastHit hit;
-			if(Physics.Raycast(touchTrans.position, Camera.main.transform.forward, out hit)){
+			if(Physics.Raycast(touchPosition, Camera.main.transform.forward, out hit)){
 				this.hit = hit;
 			}
 		}

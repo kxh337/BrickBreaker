@@ -15,8 +15,14 @@ public class TetrisInsertion : MonoBehaviour {
 	void Start () {
 		level = 0;
 		score = 0;
+		randomInitialize();
 	}
-	
+
+	//will randomly add some blocks in the game for player to break at start
+	void randomInitialize(){
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if(Time.time >= insertTime){
