@@ -16,11 +16,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (broken == nextFall) {
-			spawn ();
-			nextFall = nextFall + step;
-			//Brick.setNextFall(nextFall);
-		}
+
 	}
 	
 	void spawn() {
