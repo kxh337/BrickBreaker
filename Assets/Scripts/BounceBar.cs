@@ -27,10 +27,10 @@ public class BounceBar : MonoBehaviour {
 	void Update () {
 		transform.Translate(Vector3.right*Input.acceleration.x*speed*Time.deltaTime,Camera.main.transform);
 		if(transform.position.x <= minBar){
-			transform.position = new Vector3 (minBar, -8,0);
+			transform.position = new Vector3 (minBar, -10,0);
 		}
 		if(transform.position.x>=maxBar){
-			transform.position = new Vector3 (maxBar, -8,0);
+			transform.position = new Vector3 (maxBar, -10,0);
 		}
 
 		if( ballCount ==0){
